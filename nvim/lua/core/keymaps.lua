@@ -74,6 +74,31 @@ vim.keymap.set("n", "<leader>lx", function()
 	})
 end, { desc = "Toggle LSP diagnostics" })
 
+vim.api.nvim_create_user_command("LspInfo", function()
+	vim.cmd("checkhealth vim.lsp")
+end, {})
+
+vim.api.nvim_create_user_command("LspStop", function()
+	for _, client in ipairs(vim.lsp.get_clients()) do
+		client.stop()
+	end
+end, {})
+
+vim.api.nvim_create_user_command("LspStart", function()
+	vim.lsp.enable()
+end, {})
+
+vim.api.nvim_create_user_command("LspRestart", function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+	for _, client in ipairs(clients) do
+		client.stop()
+	end
+	vim.defer_fn(function()
+		vim.cmd("edit")
+	end, 500)
+end, {})
+
 -- Dismiss all notification windows currently displayed
 vim.keymap.set("n", "<leader>cn", function()
 	require("notify").dismiss({ silent = false, pending = false })
