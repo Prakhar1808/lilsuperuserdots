@@ -203,6 +203,17 @@ return {
 		vim.lsp.config("jsonls", {})
 
 		vim.lsp.config("hyprls", {})
+
+        vim.lsp.config("jdtls", {
+            filetypes = {"java"},
+
+            root_markers = {
+                ".git",
+                "pom.xml",
+                "build.gradle",
+            }
+        })
+
 		-- Mason-lspconfig automatically calls vim.lsp.enable() for installed servers
 		-- No need to manually enable each server
 	end,

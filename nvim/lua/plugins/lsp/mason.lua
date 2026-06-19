@@ -35,6 +35,7 @@ return {
 				"lua_ls",
 				"jsonls",
                 "hyprls",
+                "jdtls",
 			},
 			automatic_enable = true,
 		})
