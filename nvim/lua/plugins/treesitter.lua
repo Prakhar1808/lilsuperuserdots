@@ -10,7 +10,7 @@ return {
 				enable = true,
 			},
 			-- enable indentation
-			indent = { enable = true },
+			indent = { enable = false },
 			ensure_installed = {
 				"c",
 				"cpp",
