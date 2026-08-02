@@ -36,6 +36,7 @@ return {
 				"jsonls",
                 "hyprls",
                 "jdtls",
+                "tombi"
 			},
 			automatic_enable = true,
 		})

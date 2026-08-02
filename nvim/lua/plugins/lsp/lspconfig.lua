@@ -204,6 +204,15 @@ return {
 
 		vim.lsp.config("hyprls", {})
 
+		vim.lsp.config("tombi", {
+            filetypes = {"toml"},
+            root_markers = {
+                ".git",
+                "tombi.toml",
+                "pyproject.toml",
+            }
+        })
+
         vim.lsp.config("jdtls", {
             filetypes = {"java"},
 
