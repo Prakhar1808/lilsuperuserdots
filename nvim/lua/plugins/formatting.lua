@@ -6,6 +6,21 @@ return {
 
 		conform.setup({
 			formatters = {
+				clang_format = {
+					-- Formatting workflow:
+					--   • If a project has a .clang-format, use it.
+					--   • Otherwise, fall back to ~/.clang-format (my/yoru personal defaults).
+					-- NOTE: The formatter's cwd is set to the buffer's directory so style lookup
+					-- always starts from the file being formatted : D
+					cwd = function(_, ctx)
+						return ctx.dirname
+					end,
+					prepend_args = {
+						"--style=file",
+						-- Used only if .clang-format is NOT FOUND ANYWHERE!
+						"--fallback-style=LLVM",
+					},
+				},
 				["markdown-toc"] = {
 					condition = function(_, ctx)
 						for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
@@ -38,11 +53,13 @@ return {
 				rust = { "rustfmt" },
 				python = { "black" },
 				asm = { "asmfmt" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
 			},
 			-- format_on_save = {
-			-- 	lsp_fallback = true,
-			-- 	async = false,
-			-- 	timeout_ms = 1000,
+			--     lsp_fallback = true,
+			--     async = false,
+			--     timeout_ms = 1000,
 			-- },
 		})
 

@@ -1,0 +1,7 @@
+# ~/.clang-format
+# Personal Default/Fallback Style
+# NOTE: Used only when the current project doesn't provide its .clang-format
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
